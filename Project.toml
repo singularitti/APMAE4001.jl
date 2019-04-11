@@ -1,0 +1,10 @@
+name = "APMAE4001"
+uuid = "bdaa913e-a435-5564-aaaf-b31dd25d092b"
+authors = ["Qi Zhang <singularitti@outlook.com>"]
+version = "0.1.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
