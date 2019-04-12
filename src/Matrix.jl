@@ -13,8 +13,8 @@ module Matrix
 
 export issquare
 
-function issquare(a::AbstractMatrix)::Bool
-    m, n = size(a)
+function issquare(A::AbstractMatrix)::Bool
+    m, n = size(A)
     m == n ? true : false
 end
 
