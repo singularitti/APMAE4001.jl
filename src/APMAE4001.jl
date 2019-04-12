@@ -1,5 +1,8 @@
 module APMAE4001
 
-greet() = print("Hello World!")
+using Reexport
+
+include("LUFactorization/LUFactorization.jl")
+@reexport using .LUFactorization
 
 end # module
