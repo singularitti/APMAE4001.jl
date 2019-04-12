@@ -13,8 +13,6 @@ module Substitution
 
 using LinearAlgebra: rank, UpperTriangular, LowerTriangular
 
-using SimpleTraits: @traitdef, @traitimpl, @traitfn
-
 export Forward,
     Backward,
     substitution
@@ -22,25 +20,25 @@ export Forward,
 struct Forward end
 struct Backward end
 
-substitution(A::UpperTriangular, b::AbstractVector) = substitution(Backward(), A, b)
-substitution(A::LowerTriangular, b::AbstractVector) = substitution(Forward(), A, b)
 function substitution(::Backward, A::AbstractMatrix, b::AbstractVector)
-    m, n = size(A)
+    issquare(A) || throw(DimensionMismatch("The matrix `a` is not a square matrix!"))
+    m = size(A, 1)
     r = rank(A)
+    solutions = [b[m] / A[m, m]]
     for i in m:1
-        for j in n:1
-            (b[i] - sum() ) / A[i, j]
-        end
+        pushfirst!((b[i] - sum(A[i, j] * solutions[j] for j in (i + 1):m)) / A[i, i])
     end
 end
 function substitution(::Forward, A::AbstractMatrix, b::AbstractVector)
-    m, n = size(A)
+    issquare(A) || throw(DimensionMismatch("The matrix `a` is not a square matrix!"))
+    m = size(A, 1)
     r = rank(A)
-    for i in m:1
-        for j in n:1
-            (b[i] - sum() ) / A[i, j]
-        end
+    solutions = [b[1] / A[1, 1]]
+    for i in 2:m
+        push!((b[i] - sum(A[i, j] * solutions[j] for j in 1:(i - 1))) / A[i, i])
     end
 end
+substitution(A::UpperTriangular, b::AbstractVector) = substitution(Backward(), A.data, b)
+substitution(A::LowerTriangular, b::AbstractVector) = substitution(Forward(), A.data, b)
 
 end
