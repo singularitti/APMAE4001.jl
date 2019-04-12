@@ -13,6 +13,8 @@ module Doolittle
 
 using LinearAlgebra: I, kron
 
+using APMAE4001.Matrix
+
 export doolittle_lu
 
 function row_vector(n::Int, k::Int)
@@ -48,8 +50,8 @@ general_elementary_elimination_matrix(lk::AbstractVector, ek::AbstractVector) = 
 Referenced from [Wikipedia "LU decomposition" page](https://en.wikipedia.org/wiki/LU_decomposition#Doolittle_algorithm).
 """
 function doolittle_lu(A::AbstractMatrix; include_l::Bool = true, include_e::Bool = false)
-    m, n = size(A)
-    m == n || throw(DimensionMismatch("The $m by $n matrix `a` is not a square matrix!"))
+    issquare(A) || throw(DimensionMismatch("The matrix `a` is not a square matrix!"))
+    n = size(A, 1)
 
     intermediate_elementary_elimination_matrices = []
     for k in 1:(n - 1)
