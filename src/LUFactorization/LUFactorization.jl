@@ -13,7 +13,7 @@ module LUFactorization
 
 using Reexport
 
-include("SimpleLU.jl")
-@reexport using .SimpleLU
+include("Doolittle.jl")
+@reexport using .Doolittle
 
 end

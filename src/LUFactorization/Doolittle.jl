@@ -1,5 +1,5 @@
 """
-# module SimpleLU
+# module Doolittle
 
 
 
@@ -9,7 +9,7 @@
 julia>
 ```
 """
-module SimpleLU
+module Doolittle
 
 using LinearAlgebra: I, kron
 
