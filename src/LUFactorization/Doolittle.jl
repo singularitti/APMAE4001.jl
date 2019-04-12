@@ -24,7 +24,7 @@ end
 """
     elimination_factors(n::Int, k::Int, A::AbstractMatrix)
 
-Generate a vector of factors to eliminate the $k$th column.
+Generate a vector of factors to eliminate the \$k\$th column.
 Combine this function with `row_vector` to to generate an general elementary elimination matrix.
 """
 function elimination_factors(n::Int, k::Int, A::AbstractMatrix)
@@ -38,7 +38,7 @@ end
 """
     general_elementary_elimination_matrix(lk::AbstractVector, ek::AbstractVector)
 
-Elimination matrix $E_k$ do row operations to eliminate the $k$th column.
+Elimination matrix \$E_k\$ do row operations to eliminate the \$k\$th column.
 """
 general_elementary_elimination_matrix(lk::AbstractVector, ek::AbstractVector) = I - kron(lk, transpose(ek))  # `I` is the identity matrix.
 
