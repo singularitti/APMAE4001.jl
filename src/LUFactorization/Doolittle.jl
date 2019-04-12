@@ -38,13 +38,13 @@ function doolittle_lu(A::AbstractMatrix; include_l::Bool = true, include_e::Bool
     intermediate_elementary_elimination_matrices = []
     for k in 1:(n - 1)
         Ek = _general_elementary_elimination_matrix(_elimination_factors(n, k, A), _row_vector(n, k))
-        pushfirst!(intermediate_elementary_elimination_matrices, Ek)
+        pushfirst!(intermediate_elementary_elimination_matrices, Ek)  # Keep this order!
         A = Ek * A
     end
     # Now `A` is the U matrix.
     E = prod(*, intermediate_elementary_elimination_matrices)
     include_e && return E, A
-    include_l && return inv(E), A
+    include_l && return inv(E), A  # L matrix is `inv(E)`.
     return A
 end
 
