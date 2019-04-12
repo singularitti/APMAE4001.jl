@@ -50,7 +50,7 @@ general_elementary_elimination_matrix(lk::AbstractVector, ek::AbstractVector) = 
 Referenced from [Wikipedia "LU decomposition" page](https://en.wikipedia.org/wiki/LU_decomposition#Doolittle_algorithm).
 """
 function doolittle_lu(A::AbstractMatrix; include_l::Bool = true, include_e::Bool = false)
-    issquare(A) || throw(DimensionMismatch("The matrix `a` is not a square matrix!"))
+    issquare(A) || throw(DimensionMismatch("The matrix `A` is not a square matrix!"))
     n = size(A, 1)
 
     intermediate_elementary_elimination_matrices = []
