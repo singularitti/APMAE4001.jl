@@ -21,6 +21,12 @@ function _row_vector(n::Int, k::Int)
     return v
 end
 
+"""
+    _elimination_factors(n::Int, k::Int, A::AbstractMatrix)
+
+Generate a vector of factors to eliminate the $k$th column.
+Combine this function with `_row_vector` to to generate an general elementary elimination matrix.
+"""
 function _elimination_factors(n::Int, k::Int, A::AbstractMatrix)
     v = zeros(promote_type(eltype(A), Float64), n)
     for j in (k + 1):n
@@ -29,8 +35,18 @@ function _elimination_factors(n::Int, k::Int, A::AbstractMatrix)
     v
 end
 
+"""
+    _general_elementary_elimination_matrix(lk::AbstractVector, ek::AbstractVector)
+
+Elimination matrix $E_k$ do row operations to eliminate the $k$th column.
+"""
 _general_elementary_elimination_matrix(lk::AbstractVector, ek::AbstractVector) = I - kron(lk, transpose(ek))  # `I` is the identity matrix.
 
+"""
+    doolittle_lu(A::AbstractMatrix; include_l::Bool=true, include_e::Bool=false)
+
+Referenced from [Wikipedia "LU decomposition" page](https://en.wikipedia.org/wiki/LU_decomposition#Doolittle_algorithm).
+"""
 function doolittle_lu(A::AbstractMatrix; include_l::Bool = true, include_e::Bool = false)
     m, n = size(A)
     m == n || throw(DimensionMismatch("The $m by $n matrix `a` is not a square matrix!"))
