@@ -11,11 +11,13 @@ julia>
 """
 module Doolittle
 
-using LinearAlgebra: I, kron
+using LinearAlgebra: I, kron, UpperTriangular
 
-using APMAE4001.Matrix
+using APMAE4001.Matrix: issquare
+using APMAE4001.LUFactorization.Substitution
 
-export doolittle_lu
+export doolittle_lu,
+    polysolve
 
 function row_vector(n::Int, k::Int)
     v = zeros(n)
@@ -64,6 +66,11 @@ function doolittle_lu(A::AbstractMatrix; include_l::Bool = true, include_e::Bool
     include_e && return E, A
     include_l && return inv(E), A  # L matrix is `inv(E)`.
     return A
+end
+
+function polysolve(A::AbstractMatrix, b::AbstractVector)
+    E, U = doolittle_lu(A, include_e = true)
+    substitution(UpperTriangular(U), E * b)
 end
 
 end
