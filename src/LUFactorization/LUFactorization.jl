@@ -13,6 +13,8 @@ module LUFactorization
 
 using Reexport
 
+include("Substitution.jl")
+
 include("Doolittle.jl")
 @reexport using .Doolittle
 
