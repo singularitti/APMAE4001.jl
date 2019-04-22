@@ -11,7 +11,7 @@ branches:
     - develop
 script: # the default script is equivalent to the following
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-  - julia --color=yes -e 'import Pkg; Pkg.add("Test"); Pkg.build(""); Pkg.test(""; coverage=true)';
+  - julia --color=yes -e 'import Pkg; Pkg.add("Test"); Pkg.build("APMAE4001"); Pkg.test("APMAE4001"; coverage=true)';
 jobs:
   include:
     - stage: "Documentation"
