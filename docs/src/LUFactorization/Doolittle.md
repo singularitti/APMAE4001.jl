@@ -10,27 +10,27 @@ We are solving a linear equation
 \mathrm{ A } \mathbf{ x } = \mathbf{ b },
 ```
 
-where `\mathrm{ A }` is an `n \times n` matrix. Turn it into an equivalent form
+where ``\mathrm{ A }`` is an ``n \times n`` matrix. Turn it into an equivalent form
 
 ```math
 \mathrm{ U } \mathbf{ x } = \mathbf{ c },
 ```
 
-where `\mathrm{ U }` is an upper triangular matrix.
+where ``\mathrm{ U }`` is an upper triangular matrix.
 
-For the `k`th step, we have an elimination matrix `\mathrm{ E }_k`, so
+For the ``k``th step, we have an elimination matrix ``\mathrm{ E }_k``, so
 
 ```math
 \mathrm{ U } = \mathrm{ E }_{n - 1} \cdots \mathrm{ E_2 E_1 } \mathrm{ A } \equiv \mathrm{ E A },
 ```
 
-where `\mathrm{ E } = \mathrm{ E }_{n - 1} \cdots \mathrm{ E_2 E_1 }`. Thus we have `n - 1` steps in total. We denote here
+where ``\mathrm{ E } = \mathrm{ E }_{n - 1} \cdots \mathrm{ E_2 E_1 }``. Thus we have ``n - 1`` steps in total. We denote here
 
 ```math
 \mathrm{ A }_{k} = \mathrm{ E }_k \mathrm{ A }_{k - 1}.
 ```
 
-Thus the final step will be `\mathrm{ A }_{n - 1} = \mathrm{ E }_{n - 1} \mathrm{ A }_{n - 2} = \mathrm{ U }`.
+Thus the final step will be ``\mathrm{ A }_{n - 1} = \mathrm{ E }_{n - 1} \mathrm{ A }_{n - 2} = \mathrm{ U }``.
 
 So
 
@@ -38,7 +38,7 @@ So
 \mathrm{ A } = \mathrm{ E }^{-1} \mathrm{ U } = (\mathrm{ E }_{n - 1} \cdots \mathrm{ E_2 E_1 })^{-1} \mathrm{ U } = \mathrm{ E }^{-1}_1 \mathrm{ E }^{-1}_2 \cdots \mathrm{ E }^{-1}_{n - 1} \mathrm{ U } = \mathrm{ L }_1 \mathrm{ L }_2 \cdots \mathrm{ L }_{n - 1} \mathrm{ U } \equiv \mathrm{ L } \mathrm{ U },
 ```
 
-where `\mathrm{ L } = \mathrm{ L }_1 \mathrm{ L }_2 \cdots \mathrm{ L }_{n - 1}`.
+where ``\mathrm{ L } = \mathrm{ L }_1 \mathrm{ L }_2 \cdots \mathrm{ L }_{n - 1}``.
 
 ```@docs
 elimination_factors(n::Int, k::Int, A::AbstractMatrix)
