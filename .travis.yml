@@ -20,7 +20,7 @@ jobs:
       script:
         - julia --color=yes --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd()));
                                                Pkg.instantiate()'
-        - julia --color=yes --project=docs/ -e 'import Pkg; Pkg.add("Documenter")' docs/make.jl
+        - julia --color=yes --project=docs/ -e 'import Pkg; Pkg.add("Documenter"); evalfile("docs/make.jl")'
       after_success: skip
 matrix:
   allow_failures:
