@@ -17,7 +17,7 @@ using APMAE4001.Matrix: issquare
 using APMAE4001.LUFactorization.Substitution
 
 export doolittle_lu,
-    polysolve
+    linearsolve
 
 function row_vector(n::Int, k::Int)
     v = zeros(n)
@@ -73,7 +73,7 @@ function doolittle_lu(A::AbstractMatrix; include_l::Bool = true, include_e::Bool
     return A
 end
 
-function polysolve(A::AbstractMatrix, b::AbstractVector)
+function linearsolve(A::AbstractMatrix, b::AbstractVector)
     E, U = doolittle_lu(A, include_e = true)
     substitution(UpperTriangular(U), E * b)
 end

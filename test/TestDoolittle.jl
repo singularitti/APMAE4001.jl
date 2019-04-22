@@ -49,7 +49,7 @@ end
      @test U == [1.0  1.0   0.0
                  0.0  3.0   1.0
                  0.0  0.0  -2.0]
-     solutions = polysolve(A, b)
+     solutions = linearsolve(A, b)
      @test solutions == A \ b
 end
 
