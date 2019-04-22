@@ -19,5 +19,5 @@ makedocs(sitename = "APMAE4001",
 deploydocs(
     repo = "github.com/singularitti/APMAE4001.jl.git",
     target = "build",
-    devbranch = "develop",
+    devbranch = "master",
 )
