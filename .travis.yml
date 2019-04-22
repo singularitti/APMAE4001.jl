@@ -18,10 +18,9 @@ jobs:
       julia: 1.0
       os: osx
       script:
-        - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd()));
+        - julia --color=yes --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd()));
                                                Pkg.instantiate()'
-        - julia --color=yes -e 'import Pkg; Pkg.add("Documenter")'
-        - julia --project=docs/ docs/make.jl
+        - julia --color=yes --project=docs/ -e 'import Pkg; Pkg.add("Documenter")' docs/make.jl
       after_success: skip
 matrix:
   allow_failures:
