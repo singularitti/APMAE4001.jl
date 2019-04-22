@@ -1,7 +1,7 @@
 # Doolittle algorithm
 
 ```@meta
-CurrentModule = PMAE4001.LUFactorization.Doolittle
+CurrentModule = APMAE4001.LUFactorization.Doolittle
 ```
 
 We are solving a linear equation
