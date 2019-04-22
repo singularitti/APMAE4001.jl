@@ -7,6 +7,7 @@ This is the repo containing numerical algorithms I implement when studying the c
 ```@contents
 Pages = [
     "LUFactorization/Doolittle.md"
+    "LUFactorization/Substitution.md"
 ]
 Depth = 3
 ```

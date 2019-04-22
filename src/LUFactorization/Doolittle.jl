@@ -73,6 +73,11 @@ function doolittle_lu(A::AbstractMatrix; include_l::Bool = true, include_e::Bool
     return A
 end
 
+"""
+    linearsolve(A::AbstractMatrix, b::AbstractVector)
+
+Solve a system of linear equations by Doolittle LU decomposition.
+"""
 function linearsolve(A::AbstractMatrix, b::AbstractVector)
     E, U = doolittle_lu(A, include_e = true)
     substitution(UpperTriangular(U), E * b)
