@@ -20,6 +20,7 @@ jobs:
       script:
         - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd()));
                                                Pkg.instantiate()'
+        - julia --color=yes -e 'import Pkg; Pkg.add("Documenter")'
         - julia --project=docs/ docs/make.jl
       after_success: skip
 matrix:
