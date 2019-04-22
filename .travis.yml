@@ -1,10 +1,15 @@
+# Referenced from `PkgTemplates.jl/.travis.yml`
 language: julia
 os:
   - linux
   - osx
 julia:
   - 1.0
-  - nightly
+  - 1.1
+matrix:
+  allow_failures:
+    - julia: nightly
+  fast_finish: true
 branches:
   only:
     - master
@@ -12,22 +17,23 @@ branches:
 script: # the default script is equivalent to the following
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
   - julia --color=yes -e 'import Pkg; Pkg.add("Test"); Pkg.build("APMAE4001"); Pkg.test("APMAE4001"; coverage=true)';
+after_success:
+  - julia --color=yes -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
 jobs:
   include:
     - stage: "Documentation"
-      julia: 1.0
+      julia: 1.1
       os: osx
-      script:
-        - julia --color=yes --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd()));
-                                               Pkg.instantiate()'
-        - julia --color=yes --project=docs/ -e 'import Pkg; Pkg.add("Documenter"); evalfile("docs/make.jl")'
+      branches:
+        only:
+          - master
+          - develop
+      script: julia --project=docs -e '
+        using Pkg;
+        Pkg.develop(PackageSpec(path=pwd()));
+        Pkg.instantiate();
+        include("docs/make.jl");'
       after_success: skip
-matrix:
-  allow_failures:
-    - julia: nightly
-  fast_finish: true
-after_success:
-  - julia --color=yes -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
 notifications:
   email:
     - singularitti@outlook.com
