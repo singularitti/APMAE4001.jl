@@ -10,7 +10,8 @@ makedocs(sitename = "APMAE4001",
     pages = [
         "Home" => "index.md",
         "Manual" => [
-            "LU Factorization" => "LUFactorization/Doolittle.md"
+            "LU Factorization" => "LUFactorization/Doolittle.md",
+            "Substitution" => "LUFactorization/Substitution.md"
         ]
     ],
 )
