@@ -16,7 +16,7 @@ branches:
     - develop
 script: # the default script is equivalent to the following
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-  - julia --color=yes -e 'import Pkg; Pkg.add("Test"); Pkg.build("APMAE4001"); Pkg.test("APMAE4001"; coverage=true)';
+  - julia --color=yes -e 'using Pkg; Pkg.add("Test"); Pkg.build("APMAE4001"); Pkg.test("APMAE4001"; coverage=true)';
 after_success:
   - julia --color=yes -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
 jobs:
@@ -30,6 +30,7 @@ jobs:
           - develop
       script: julia --project=docs -e '
         using Pkg;
+        Pkg.add("Documenter");
         Pkg.develop(PackageSpec(path=pwd()));
         Pkg.instantiate();
         include("docs/make.jl");'
