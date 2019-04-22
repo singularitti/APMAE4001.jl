@@ -6,8 +6,16 @@ make.jl:
 =#
 using Documenter, APMAE4001
 
-makedocs(sitename="APMAE4001 Documentation")
+makedocs(sitename = "APMAE4001",
+    pages = [
+        "Home" => "index.md",
+        "Manual" => [
+            "LU Factorization" => "LUFactorization/Doolittle.md"
+        ]
+    ],
+)
 
 deploydocs(
     repo = "github.com/singularitti/APMAE4001.jl.git",
+    target = "build",
 )
