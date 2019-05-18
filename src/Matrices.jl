@@ -34,7 +34,7 @@ end
 
 function isorthogonal(A::AbstractMatrix)
     issquare(A) || return false
-    A' * A == I ? true : false
+    isapprox(A' * A, I) ? true : false
 end  # function isorthogonal
 
 end
