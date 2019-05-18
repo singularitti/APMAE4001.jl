@@ -13,7 +13,7 @@ module Substitution
 
 using LinearAlgebra: rank, UpperTriangular, LowerTriangular
 
-using APMAE4001.Matrix: issquare
+using APMAE4001.Matrices: issquare
 
 export Forward,
     Backward,

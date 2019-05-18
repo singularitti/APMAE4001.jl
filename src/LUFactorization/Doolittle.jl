@@ -13,7 +13,7 @@ module Doolittle
 
 using LinearAlgebra: I, kron, UpperTriangular
 
-using APMAE4001.Matrix: issquare
+using APMAE4001.Matrices: issquare
 using APMAE4001.LUFactorization.Substitution
 
 export doolittle_lu,

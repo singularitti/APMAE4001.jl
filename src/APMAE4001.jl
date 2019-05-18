@@ -2,8 +2,8 @@ module APMAE4001
 
 using Reexport
 
-include("Matrix.jl")
-@reexport using .Matrix
+include("Matrices.jl")
+@reexport using .Matrices
 
 include("FiniteDifference/FiniteDifference.jl")
 

@@ -1,5 +1,5 @@
 """
-# module Matrix
+# module Matrices
 
 
 
@@ -9,7 +9,7 @@
 julia>
 ```
 """
-module Matrix
+module Matrices
 
 export issquare,
     isdiagonallydominant,
