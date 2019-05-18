@@ -14,4 +14,6 @@ include("InverseMatrices/InverseMatrices.jl")
 
 include("LUFactorization/LUFactorization.jl")
 
+include("Projections/Projections.jl")
+
 end # module
