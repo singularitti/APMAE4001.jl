@@ -11,6 +11,8 @@ julia>
 """
 module Matrices
 
+using LinearAlgebra: I
+
 export issquare,
     isdiagonallydominant,
     isorthogonal
