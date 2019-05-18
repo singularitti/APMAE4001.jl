@@ -12,7 +12,8 @@ julia>
 module Matrix
 
 export issquare,
-    isdiagonallydominant
+    isdiagonallydominant,
+    isorthogonal
 
 function issquare(A::AbstractMatrix)::Bool
     m, n = size(A)
@@ -28,5 +29,10 @@ function isdiagonallydominant(A::AbstractMatrix)::Bool
     end
     return true
 end
+
+function isorthogonal(A::AbstractMatrix)
+    issquare(A) || return false
+    A' * A == I ? true : false
+end  # function isorthogonal
 
 end
