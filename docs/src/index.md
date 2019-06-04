@@ -15,4 +15,9 @@ Depth = 3
 ## [Index](@id main-index)
 
 ```@index
+
+```
+
+```@autodocs
+Modules = [APMAE4001]
 ```

@@ -6,7 +6,9 @@ make.jl:
 =#
 using Documenter, APMAE4001
 
-makedocs(sitename = "APMAE4001",
+makedocs(
+    modules=[APMAE4001],
+    format=Documenter.HTML(),
     pages = [
         "Home" => "index.md",
         "Manual" => [
@@ -14,6 +16,10 @@ makedocs(sitename = "APMAE4001",
             "Substitution" => "LUFactorization/Substitution.md"
         ]
     ],
+    repo="https://github.com/singularitti/APMAE4001.jl/blob/{commit}{path}#L{line}",
+    sitename="APMAE4001.jl",
+    authors="Qi Zhang",
+    assets=String[],
 )
 
 deploydocs(

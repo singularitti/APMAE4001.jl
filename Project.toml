@@ -3,6 +3,9 @@ uuid = "bdaa913e-a435-5564-aaaf-b31dd25d092b"
 authors = ["Qi Zhang <singularitti@outlook.com>"]
 version = "0.1.0"
 
+[compat]
+julia = "1"
+
 [deps]
 BandedMatrices = "aae01518-5342-5314-be14-df237901396f"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
@@ -11,3 +14,6 @@ Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
