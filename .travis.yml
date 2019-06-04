@@ -1,40 +1,27 @@
-# Referenced from `PkgTemplates.jl/.travis.yml`
+# Documentation: http://docs.travis-ci.com/user/languages/julia/
 language: julia
 os:
   - linux
   - osx
 julia:
   - 1.0
-  - 1.1
+  - nightly
 matrix:
   allow_failures:
     - julia: nightly
   fast_finish: true
-branches:
-  only:
-    - master
-    - develop
-script: # the default script is equivalent to the following
-  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-  - julia --color=yes -e 'using Pkg; Pkg.add("Test"); Pkg.build("APMAE4001"); Pkg.test("APMAE4001"; coverage=true)';
+notifications:
+  email: false
 after_success:
-  - julia --color=yes -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
+  - julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
+  - julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Coveralls.submit(process_folder())'
 jobs:
   include:
-    - stage: "Documentation"
-      julia: 1.1
-      os: osx
-      branches:
-        only:
-          - master
-          - develop
+    - stage: Documentation
+      julia: 1.0
       script: julia --project=docs -e '
-        using Pkg;
-        Pkg.add("Documenter");
-        Pkg.develop(PackageSpec(path=pwd()));
-        Pkg.instantiate();
-        include("docs/make.jl");'
+          using Pkg;
+          Pkg.develop(PackageSpec(path=pwd()));
+          Pkg.instantiate();
+          include("docs/make.jl");'
       after_success: skip
-notifications:
-  email:
-    - singularitti@outlook.com
